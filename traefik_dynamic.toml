@@ -1,4 +1,11 @@
-[http.middlewares.simpleAuth.basicAuth]
-  users = [
-    "admin:$apr1$jQgH/9Tm$dKuIqgK2.QttkI8c8gHWW0"
-  ]
+[http.middlewares]
+  [http.middlewares.redirect-to-https]
+    [http.middlewares.redirect-to-https.redirectScheme]
+      scheme = "https"
+      permanent = true
+
+  [http.middlewares.simpleAuth]
+    [http.middlewares.simpleAuth.basicAuth]
+      users = [
+        "admin:$apr1$jQgH/9Tm$dKuIqgK2.QttkI8c8gHWW0"
+      ]

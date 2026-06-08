@@ -11,17 +11,20 @@
 [api]
   dashboard = true
 
-[certificatesResolvers.lets-encrypt.acme]
-  email = "ramaminirinavictorino@gmail.com"
-  storage = "acme.json"
-  [certificatesResolvers.lets-encrypt.acme.tlsChallenge]
+[certificatesResolvers.letsencrypt]
+  [certificatesResolvers.letsencrypt.acme]
+    email = "ramaminirinavictorino@gmail.com"
+    storage = "acme.json"
+    [certificatesResolvers.letsencrypt.acme.tlsChallenge]
 
 [providers.docker]
   watch = true
   exposedByDefault = false
+  network = "traefik_fruits"  # Spécifier le réseau Docker par défaut
 
 [providers.file]
-  filename = "traefik_dynamic.toml"
+  filename = "/etc/traefik/traefik_dynamic.toml"
+  watch = true
 
 [log]
   level = "INFO"
