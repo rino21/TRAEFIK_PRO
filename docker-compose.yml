@@ -3,18 +3,21 @@ services:
     image: traefik:v3.6
     container_name: traefik
     restart: always
+
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
+
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.toml:/etc/traefik/traefik.toml:ro
       - ./traefik_dynamic.toml:/etc/traefik/traefik_dynamic.toml:ro
       - ./acme.json:/acme.json
+
     networks:
       - fruits
 
 networks:
   fruits:
+    name: traefik_fruits
     driver: bridge
-    name: traefik_fruits  # Ajouter un nom explicite pour le réseau

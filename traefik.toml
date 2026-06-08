@@ -1,6 +1,8 @@
 [entryPoints]
+
   [entryPoints.web]
     address = ":80"
+
     [entryPoints.web.http.redirections.entryPoint]
       to = "websecure"
       scheme = "https"
@@ -11,20 +13,21 @@
 [api]
   dashboard = true
 
-[certificatesResolvers.letsencrypt]
-  [certificatesResolvers.letsencrypt.acme]
-    email = "ramaminirinavictorino@gmail.com"
-    storage = "acme.json"
-    [certificatesResolvers.letsencrypt.acme.tlsChallenge]
-
 [providers.docker]
   watch = true
   exposedByDefault = false
-  network = "traefik_fruits"  # Spécifier le réseau Docker par défaut
+  network = "traefik_fruits"
 
 [providers.file]
   filename = "/etc/traefik/traefik_dynamic.toml"
   watch = true
+
+[certificatesResolvers.letsencrypt]
+  [certificatesResolvers.letsencrypt.acme]
+    email = "ramaminirinavictorino@gmail.com"
+    storage = "/acme.json"
+
+    [certificatesResolvers.letsencrypt.acme.tlsChallenge]
 
 [log]
   level = "INFO"
